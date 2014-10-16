@@ -129,7 +129,15 @@ class FixedArray(object):
         self.mutable = mutable
         # Small sanity check
         if not self.array:
-            self.array = ctypes.POINTER(ctypes.c_int(0))
+            tmp = ctypes.c_int(0)
+            self.array = ctypes.pointer(tmp)
+
+    def __str__(self):
+        return "<FixedArray: array of type: {0}, length: {1}, mutable: {2} >".format(
+            self.array, self.length, self.mutable)
+
+    def __repr__(self):
+        return str(self)
 
     def _get_item(self, key):
         """

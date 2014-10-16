@@ -98,12 +98,18 @@ class MTPConnectionManager(object):
             @return: An array/list of L{MTPRawDevice} objects
         """
         numdevices = ctypes.c_int(0)
-        devices = ctypes.POINTER(LIBMTP_RawDevice)
+        device = LIBMTP_RawDevice()
+        devices = ctypes.pointer(device)
         ret = self._mtp.LIBMTP_Detect_Raw_Devices(ctypes.byref(devices),
             ctypes.byref(numdevices))
 
+
+
         if ret != 0:
             raise
+        devlist = MTPRawDevices(devices, numdevices.value)
+        return devlist
+        
 
 class MTP:
 	"""

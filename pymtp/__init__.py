@@ -23,6 +23,8 @@
 		>>>
 """
 
+from main import MTP
+
 __VERSION__ = "0.1.0"
 __VERSION_MACRO__ = 0
 __VERSION_MINOR__ = 1
